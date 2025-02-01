@@ -3,103 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CAIAS Admission Page</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    <title>CAIAS UG ADMISSIONS</title>
     <style>
-      /* Global Styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
       body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
-        color: #333;
-        line-height: 1.6;
-      }
-
-      /* Header Styles */
-      header {
-        background-color: #007bff;
-        color: white;
-        padding: 20px;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
         text-align: center;
       }
-
-      .header-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
+      .header-container {
+        width: 100%;
+        height: 20vh;
+        background: url("https://i.postimg.cc/76Z4H3y0/Header.png") no-repeat
+          center center/cover;
       }
-
-      .header-content p {
-        font-size: 1.2rem;
-      }
-
-      /* Form Link */
-      .form-container {
+      .grid-container {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        margin-top: 30px;
         padding: 20px;
       }
-
-      .form-link {
-        display: inline-block;
-        background-color: #28a745;
-        color: white;
-        padding: 15px 30px;
-        font-size: 1.2rem;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+      .grid-item {
+        position: relative;
+        width: 45%;
+        margin: 10px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        aspect-ratio: 1.2;
       }
-
-      .form-link:hover {
-        background-color: #218838;
+      .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
-
-      /* Footer Styles */
-      footer {
-        background-color: #333;
+      .text-overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6);
         color: white;
-        padding: 20px;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
         text-align: center;
-        margin-top: 40px;
-      }
-
-      .footer-content p {
-        font-size: 1rem;
       }
     </style>
-    <header>
-      <div class="header-content">
-        <h1>Welcome to the CAIAS Admission Portal</h1>
-        <p>Click the link below to apply for admission.</p>
-      </div>
-    </header>
+  </head>
+  <body>
+    <div class="header-container"></div>
+    <div class="grid-container" id="departments"></div>
+    <script>
+      const departments = [
+        {
+          name: "Department of Science",
+          image: "https://i.postimg.cc/nrMnkvRp/Science.jpg",
+          form: "https://docs.google.com/forms/d/e/1FAIpQLSfQqgkJg31N4eqhRXu3NzKNWIQUVQUK72Fnyi4VEvv0gAmFOw/viewform",
+        },
+        {
+          name: "Department of Management Studies",
+          image: "https://i.postimg.cc/BZwSvVb6/Management.jpg",
+          form: "https://docs.google.com/forms/d/e/1FAIpQLSf2r_UsvF9yvPsCDXUP-t_HJtNKV-1duztN6uiErs_brm7bWg/viewform",
+        },
+        {
+          name: "Department of Computer Science and Applications",
+          image: "https://i.postimg.cc/nz3HBd13/Computer.jpg",
+          form: "https://docs.google.com/forms/d/e/1FAIpQLScCEWe_IhzzFOa2WryIehumR0qMPRpVzean3rpxzup6bRHYDA/viewform",
+        },
+        {
+          name: "Department of Commerce",
+          image: "https://i.postimg.cc/6qSt1ygR/Commerce.jpg",
+          form: "https://docs.google.com/forms/d/e/1FAIpQLSdRtpfjTWHObNqIkmfT_iS58VUBJV5ByHPKgxNQibebHmdtbA/viewform",
+        },
+        {
+          name: "Department of Arts and Humanities",
+          image: "https://i.postimg.cc/NMssyhRy/Artsand-Humanities.jpg",
+          form: "https://docs.google.com/forms/d/e/1FAIpQLSfigKBsh_ME3jVyeNOW0BOyJyfOZsTSd1n_OGeuvueufyp2hg/viewform",
+        },
+      ];
 
-    <main>
-      <section class="form-container">
-        <a
-          href="https://forms.gle/ghHksiPwfvJTX3a36"
-          target="_blank"
-          class="form-link"
-          >Apply for Admission</a
-        >
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-content">
-        <p>
-          &copy; 2025 Christ Academy Institute for Advanced Studies. All rights
-          reserved.
-        </p>
-      </div>
-    </footer>
+      const container = document.getElementById("departments");
+      container.innerHTML = departments
+        .map(
+          (dept) => `
+            <div class="grid-item" onclick="window.open('${dept.form}', '_blank')">
+                <img src="${dept.image}" alt="${dept.name}">
+                <div class="text-overlay">${dept.name}</div>
+            </div>
+        `
+        )
+        .join("");
+    </script>
   </body>
 </html>
