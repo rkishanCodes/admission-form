@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistent Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        label, input {
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Persistent Form using Local Storage</h2>
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <button type="submit">Save</button>
+    </form>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("myForm");
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            
+            // Load stored data
+            nameInput.value = localStorage.getItem("name") || "";
+            emailInput.value = localStorage.getItem("email") || "";
+
+            // Save data on input
+            nameInput.addEventListener("input", function () {
+                localStorage.setItem("name", nameInput.value);
+            });
+
+            emailInput.addEventListener("input", function () {
+                localStorage.setItem("email", emailInput.value);
+            });
+
+            // Save data on submit (optional)
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                alert("Data saved successfully!");
+            });
+        });
+    </script>
+</body>
+</html>

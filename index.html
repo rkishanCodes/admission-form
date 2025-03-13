@@ -3,98 +3,610 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CAIAS UG ADMISSIONS</title>
+    <title>Interview Evaluation Form</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
+        margin: 20px;
+      }
+      h2 {
         text-align: center;
       }
-      .header-container {
+      table {
         width: 100%;
-        height: 20vh;
-        background: url("https://i.postimg.cc/76Z4H3y0/Header.png") no-repeat
-          center center/cover;
+        border-collapse: collapse;
+        margin-top: 20px;
       }
-      .grid-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
       }
-      .grid-item {
-        position: relative;
-        width: 45%;
-        margin: 10px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+      th {
+        background-color: #f2f2f2;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      .form-container {
+        margin-bottom: 30px;
+      }
+      .results-container {
+        display: none;
+      }
+      .buttons {
+        margin: 20px 0;
+        text-align: center;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 0 10px;
         cursor: pointer;
-        aspect-ratio: 1.2;
       }
-      .grid-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .text-overlay {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        padding: 12px;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
+      .print-button {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <div class="header-container"></div>
-    <div class="grid-container" id="departments"></div>
-    <script>
-      const departments = [
-        {
-          name: "Department of Science",
-          image: "https://i.postimg.cc/nrMnkvRp/Science.jpg",
-          form: "https://docs.google.com/forms/d/e/1FAIpQLSfQqgkJg31N4eqhRXu3NzKNWIQUVQUK72Fnyi4VEvv0gAmFOw/viewform",
-        },
-        {
-          name: "Department of Management Studies",
-          image: "https://i.postimg.cc/BZwSvVb6/Management.jpg",
-          form: "https://docs.google.com/forms/d/e/1FAIpQLSf2r_UsvF9yvPsCDXUP-t_HJtNKV-1duztN6uiErs_brm7bWg/viewform",
-        },
-        {
-          name: "Department of Computer Science and Applications",
-          image: "https://i.postimg.cc/nz3HBd13/Computer.jpg",
-          form: "https://docs.google.com/forms/d/e/1FAIpQLScCEWe_IhzzFOa2WryIehumR0qMPRpVzean3rpxzup6bRHYDA/viewform",
-        },
-        {
-          name: "Department of Commerce",
-          image: "https://i.postimg.cc/6qSt1ygR/Commerce.jpg",
-          form: "https://docs.google.com/forms/d/e/1FAIpQLSdRtpfjTWHObNqIkmfT_iS58VUBJV5ByHPKgxNQibebHmdtbA/viewform",
-        },
-        {
-          name: "Department of Arts and Humanities",
-          image: "https://i.postimg.cc/NMssyhRy/Artsand-Humanities.jpg",
-          form: "https://docs.google.com/forms/d/e/1FAIpQLSfigKBsh_ME3jVyeNOW0BOyJyfOZsTSd1n_OGeuvueufyp2hg/viewform",
-        },
-      ];
+    <div class="form-container" id="formContainer">
+      <h2>2025 - 2026 AY UG Interview Evaluation Form</h2>
+      <form id="evaluationForm">
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Email Address</td>
+              <td><input type="email" id="email" name="email" required /></td>
+            </tr>
+            <tr>
+              <td>Name of Applicant</td>
+              <td>
+                <input
+                  type="text"
+                  id="applicantName"
+                  name="applicantName"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Application Number</td>
+              <td>
+                <input
+                  type="text"
+                  id="applicationNumber"
+                  name="applicationNumber"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Program Applied For</td>
+              <td>
+                <select id="program" name="program" required>
+                  <option value="">Select Program</option>
+                  <option value="BA - JOURNALISM, PSYCHOLOGY, ENGLISH">
+                    BA - JOURNALISM, PSYCHOLOGY, ENGLISH
+                  </option>
+                  <option value="BBA - REGULAR">BBA - REGULAR</option>
+                  <option value="BBA - ANALYTICS">BBA - ANALYTICS</option>
+                  <option value="B.COM - CA">B.COM - CA</option>
+                  <option value="B.COM - ACCA">B.COM - ACCA</option>
+                  <option
+                    value="BCA - ARTIFICIAL INTELLIGENCE & MACHINE LEARNING"
+                  >
+                    BCA - ARTIFICIAL INTELLIGENCE & MACHINE LEARNING
+                  </option>
+                  <option value="BCA - DATA SCIENCE">BCA - DATA SCIENCE</option>
+                  <option value="BCA - REGULAR">BCA - REGULAR</option>
+                  <option
+                    value="B.Sc - PHYSICS, MATHEMATICS AND COMPUTER SCIENCE"
+                  >
+                    B.Sc - PHYSICS, MATHEMATICS AND COMPUTER SCIENCE
+                  </option>
+                  <option
+                    value="B.Sc - PSYCHOLOGY, JOURNALISM AND COMPUTER SCIENCE"
+                  >
+                    B.Sc - PSYCHOLOGY, JOURNALISM AND COMPUTER SCIENCE
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Date of Interview</td>
+              <td>
+                <input
+                  type="date"
+                  id="interviewDate"
+                  name="interviewDate"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Interview Panel Member</td>
+              <td>
+                <input
+                  type="text"
+                  id="panelMember"
+                  name="panelMember"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Comments on Communication Skills</td>
+              <td>
+                <textarea id="commSkills" name="commSkills" rows="2"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Comments on Subject Knowledge</td>
+              <td>
+                <textarea
+                  id="subjectKnowledge"
+                  name="subjectKnowledge"
+                  rows="2"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Comments on Critical Thinking</td>
+              <td>
+                <textarea
+                  id="criticalThinking"
+                  name="criticalThinking"
+                  rows="2"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Comments on Motivation and Goals</td>
+              <td>
+                <textarea
+                  id="motivationGoals"
+                  name="motivationGoals"
+                  rows="2"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Comments on Overall Impression</td>
+              <td>
+                <textarea
+                  id="overallImpression"
+                  name="overallImpression"
+                  rows="2"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Strengths</td>
+              <td>
+                <textarea id="strengths" name="strengths" rows="2"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Areas for Improvement</td>
+              <td>
+                <textarea
+                  id="improvement"
+                  name="improvement"
+                  rows="2"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Time</td>
+              <td>
+                <input
+                  type="time"
+                  id="interviewTime"
+                  name="interviewTime"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Motivation and Goals (20%) [Passion for the Program]</td>
+              <td>
+                <input
+                  type="text"
+                  id="passion"
+                  name="passion"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Motivation and Goals (20%) [Alignment of Goals with Program]
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="alignment"
+                  name="alignment"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Motivation and Goals (20%) [Clarity in Career Aspirations]
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="careerClarity"
+                  name="careerClarity"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Communication Skills (20%) [Clarity of Speech]</td>
+              <td>
+                <input
+                  type="text"
+                  id="speechClarity"
+                  name="speechClarity"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Communication Skills (20%) [Confidence and Body Language]</td>
+              <td>
+                <input
+                  type="text"
+                  id="confidence"
+                  name="confidence"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Communication Skills (20%) [Ability to Express Thoughts Clearly]
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="expressThoughts"
+                  name="expressThoughts"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Subject Knowledge (30%) [Understanding of Core Concepts]</td>
+              <td>
+                <input
+                  type="text"
+                  id="coreConcepts"
+                  name="coreConcepts"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Subject Knowledge (30%) [Relevance of Responses]</td>
+              <td>
+                <input
+                  type="text"
+                  id="relevance"
+                  name="relevance"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Subject Knowledge (30%) [Depth of Knowledge]</td>
+              <td>
+                <input
+                  type="text"
+                  id="knowledgeDepth"
+                  name="knowledgeDepth"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Critical Thinking (20%) [Problem-Solving Ability]</td>
+              <td>
+                <input
+                  type="text"
+                  id="problemSolving"
+                  name="problemSolving"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Critical Thinking (20%) [Creativity in Responses]</td>
+              <td>
+                <input
+                  type="text"
+                  id="creativity"
+                  name="creativity"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Critical Thinking (20%) [Analytical Thinking]</td>
+              <td>
+                <input
+                  type="text"
+                  id="analytical"
+                  name="analytical"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Overall Impression (10%) [Attire]</td>
+              <td>
+                <input
+                  type="text"
+                  id="attire"
+                  name="attire"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Overall Impression (10%) [Grooming]</td>
+              <td>
+                <input
+                  type="text"
+                  id="grooming"
+                  name="grooming"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Overall Impression (10%) [Body Language]</td>
+              <td>
+                <input
+                  type="text"
+                  id="bodyLanguage"
+                  name="bodyLanguage"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Recommendation</td>
+              <td>
+                <select id="recommendation" name="recommendation" required>
+                  <option value="">Select Recommendation</option>
+                  <option value="Strongly Recommend">Strongly Recommend</option>
+                  <option value="Recommend">Recommend</option>
+                  <option value="Waiting List">Waitlist</option>
+                  <option value="Do Not Recommend">Not Recommend</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="buttons">
+          <button type="submit">Submit Evaluation</button>
+        </div>
+      </form>
+    </div>
 
-      const container = document.getElementById("departments");
-      container.innerHTML = departments
-        .map(
-          (dept) => `
-            <div class="grid-item" onclick="window.open('${dept.form}', '_blank')">
-                <img src="${dept.image}" alt="${dept.name}">
-                <div class="text-overlay">${dept.name}</div>
-            </div>
-        `
-        )
-        .join("");
+    <div class="results-container" id="resultsContainer">
+      <h2>2025 - 2026 AY UG Interview Evaluation Form</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Response</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody">
+          <!-- Results will be populated here -->
+        </tbody>
+      </table>
+      <h3 id="recommendationResult"></h3>
+      <h3 id="totalScoreResult"></h3>
+      <div class="buttons">
+        <button type="button" id="editButton">Edit Form</button>
+        <button type="button" class="print-button" id="printButton">
+          Print Evaluation
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("evaluationForm");
+        const formContainer = document.getElementById("formContainer");
+        const resultsContainer = document.getElementById("resultsContainer");
+        const resultsBody = document.getElementById("resultsBody");
+        const recommendationResult = document.getElementById(
+          "recommendationResult"
+        );
+        const totalScoreResult = document.getElementById("totalScoreResult");
+        const editButton = document.getElementById("editButton");
+        const printButton = document.getElementById("printButton");
+
+        // Auto-fill current timestamp
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split("T")[0];
+
+        if (document.getElementById("interviewDate")) {
+          document.getElementById("interviewDate").value = formattedDate;
+        }
+
+        // Handle form submission
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get all form values
+          const formData = new FormData(form);
+
+          // Clear previous results
+          resultsBody.innerHTML = "";
+
+          // Add timestamp
+          addResultRow("Timestamp", new Date().toLocaleString());
+
+          // Add all form fields to results
+          formData.forEach((value, key) => {
+            // Get the label from the form
+            const label = getLabelForInput(key);
+            if (label) {
+              addResultRow(label, value);
+            }
+          });
+
+          // Calculate total score
+          const scoreFields = [
+            "passion",
+            "alignment",
+            "careerClarity",
+            "speechClarity",
+            "confidence",
+            "expressThoughts",
+            "coreConcepts",
+            "relevance",
+            "knowledgeDepth",
+            "problemSolving",
+            "creativity",
+            "analytical",
+            "attire",
+            "grooming",
+            "bodyLanguage",
+          ];
+
+          let totalScore = 0;
+          scoreFields.forEach((field) => {
+            const value = parseFloat(formData.get(field) || 0);
+            totalScore += value;
+          });
+
+          // Display total score and recommendation
+          totalScoreResult.textContent = `Total Score: ${totalScore.toFixed(
+            1
+          )}`;
+          recommendationResult.textContent = `Recommendation: ${formData.get(
+            "recommendation"
+          )}`;
+
+          // Show results and hide form
+          formContainer.style.display = "none";
+          resultsContainer.style.display = "block";
+          printButton.style.display = "inline-block";
+        });
+
+        // Function to get label for input field
+        function getLabelForInput(inputName) {
+          const inputElement = document.querySelector(`[name="${inputName}"]`);
+          if (inputElement) {
+            const row = inputElement.closest("tr");
+            if (row) {
+              const label = row.querySelector("td:first-child");
+              if (label) {
+                return label.textContent.trim();
+              }
+            }
+          }
+          return null;
+        }
+
+        // Function to add a row to the results table
+        function addResultRow(label, value) {
+          const row = document.createElement("tr");
+
+          const labelCell = document.createElement("td");
+          labelCell.textContent = label;
+
+          const valueCell = document.createElement("td");
+          valueCell.textContent = value;
+
+          row.appendChild(labelCell);
+          row.appendChild(valueCell);
+          resultsBody.appendChild(row);
+        }
+
+        // Handle edit button click
+        editButton.addEventListener("click", function () {
+          resultsContainer.style.display = "none";
+          formContainer.style.display = "block";
+        });
+
+        // Handle print button click
+        printButton.addEventListener("click", function () {
+          printButton.style.display = "none";
+          editButton.style.display = "none";
+
+          window.print();
+        });
+        window.onafterprint = function () {
+          printButton.style.display = "inline-block";
+          editButton.style.display = "inline-block";
+        };
+      });
     </script>
   </body>
 </html>
