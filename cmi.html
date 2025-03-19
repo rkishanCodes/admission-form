@@ -1,0 +1,168 @@
+function sendAdmissionsEmails() { var sheet =
+SpreadsheetApp.getActiveSpreadsheet().getSheetByName("test"); var data =
+sheet.getDataRange().getValues(); for (var i = 1; i < data.length; i++) { var
+name = data[i][0]; var email = data[i][1]; var subject = "Admissions Open for
+2025-2026 | Christ Academy Institute for Advanced Studies (CAIAS), Bangalore";
+var htmlBody = `
+<html>
+  <head>
+    <style>
+      @media (min-width: 1024px) {
+        .justify-text {
+          text-align: justify;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+        padding: 15px;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <table
+        role="presentation"
+        style="
+          max-width: 750px;
+          width: 100%;
+          margin: 0 auto;
+          background-color: white;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <tr>
+          <td style="text-align: center; padding-bottom: 15px">
+            <img
+              src="https://caias.in/wp-content/uploads/2025/02/New-CAIAS-logo-Blue-copy-1024x325-1.webp"
+              alt="CAIAS Logo"
+              style="width: 300px"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding: 10px">
+            <p style="margin: 0 0 10px 0; font-size: 18px">
+              Dear Rev. Fr. ${name},
+            </p>
+            <p style="margin: 0 0 10px 0; font-size: 16px">
+              Greetings from Christ Academy Institute for Advanced Studies
+              (CAIAS), Bangalore!
+            </p>
+            <p style="margin: 0 0 10px 0; font-size: 16px" class="justify-text">
+              I am pleased to announce that admissions for the academic year
+              2025-2026 at CAIAS have officially commenced. As we continue to
+              provide quality education and holistic development opportunities,
+              we are excited to introduce two new undergraduate programs:
+            </p>
+            <ul style="font-size: 16px; line-height: 1.6">
+              <li><strong>BCA – AI & ML</strong></li>
+              <li><strong>BCA – Data Science</strong></li>
+            </ul>
+            <p style="margin: 0 0 10px 0; font-size: 16px" class="justify-text">
+              Along with our well-established Undergraduate and Postgraduate
+              programs, these new courses are designed to meet the evolving
+              demands of industry and academia, equipping students with
+              future-ready skills.
+            </p>
+            <p style="margin: 0 0 10px 0; font-size: 16px" class="justify-text">
+              We kindly request your support in sharing this information with
+              students, parents, and your wider network to help us reach
+              aspiring candidates.<br /><br />
+              Attached to this letter, you will find our Admission Poster and
+              Prospectus, which can be shared digitally or displayed on campus
+              notice boards.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; text-align: center">
+            <p style="margin: 0 0 10px 0; font-size: 16px">
+              For any further details, our Admissions Team can be reached at
+            </p>
+            <p
+              style="
+                margin: 0;
+                font-size: 18px;
+                font-weight: bold;
+                color: #024b6e;
+              "
+            >
+              <a
+                href="mailto:admissions@caias.in"
+                style="color: #024b6e; text-decoration: none"
+                >admissions@caias.in</a
+              >
+            </p>
+            <p style="margin: 5px 0; font-size: 18px; color: #024b6e">
+              8884444462 / 8884421057 / 8884421052 / 8884421053
+            </p>
+            <p
+              style="
+                margin: 5px 0;
+                font-size: 18px;
+                color: #024b6e;
+                text-align: center;
+              "
+            >
+              Scan for Application:
+            </p>
+            <img
+              src="https://caias.in/wp-content/uploads/2025/02/Application2025.png"
+              alt="CAIAS Logo"
+              style="width: 150px; height: 150px"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; text-align: center">
+            <p style="margin: 0; font-size: 16px">
+              We deeply appreciate your cooperation in promoting this initiative
+              and look forward to welcoming students from our CMI family.
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <p style="margin: 0; font-size: 14px">
+              <strong>With warm regards,</strong>
+
+              <br />
+              <img
+                src="https://caias.in/wp-content/uploads/2025/02/Fr-Anthony-Signature.png"
+                alt="CAIAS Logo"
+                style="width: 180px"
+              />
+              <br />
+              <strong>Fr. Antony Pottakaran CMI</strong> <br />Principal
+              <br />Christ Academy Institute for Advanced Studies (CAIAS)
+              <br />Christ Nagar, Hullahalli, Begur – Koppa Road,
+              <br />Sakkalwara Post, Bangalore – 560 083, Karnataka.
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="text-align: center; padding-top: 15px">
+            <p style="margin: 0; font-size: 14px; color: #777">© 2025 CAIAS</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+`; try{ GmailApp.sendEmail(email, subject, "", { htmlBody: htmlBody,
+attachments: [ DriveApp.getFileById("1HIBPQxOCnJ8cq_3RQRl-XdhlJ4Ia9uZL"),
+DriveApp.getFileById("1gPbpV55IHOHHa4l0c5h-B-QwWa3cVCZZ").getAs(MimeType.PDF) ]
+}); Logger.log("Email sent successfully to: " + email); } catch (error) {
+Logger.log("Failed to send email to: " + email + " - Error: " + error.message);
+} } }
