@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+function sendAdmissionsEmails() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("test"); 
+  var data = sheet.getDataRange().getValues();
+  
+  for (var i = 1; i < data.length; i++) { 
+    var name = data[i][0];
+    var email = data[i][1];
+    var subject = "Admissions Open for 2025-2026 | Christ Academy Institute for Advanced Studies (CAIAS), Bangalore";
+    
+    var htmlBody = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -74,7 +83,7 @@
               </tr>
               <tr>
                 <td>
-                  <h2 style="font-weight: 700; margin-bottom: 15px; color: #024b6e; text-align: center;">Why Choose CAIAS?</h2>
+                  <h2 style="font-weight: 700; margin-bottom: 15px; color: #024b6e;">Why Choose CAIAS?</h2>
                 </td>
               </tr>
               
@@ -151,7 +160,7 @@
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #eef7fb; border-radius: 12px; margin-bottom: 40px; border-left: 4px solid #024b6e;">
                     <tr>
                       <td style="padding: 30px;">
-                        <h2 style="font-weight: 700; margin-bottom: 15px; color: #024b6e;  text-align: center;">State-of-the-Art Facilities</h2>
+                        <h2 style="font-weight: 700; margin-bottom: 15px; color: #024b6e;">State-of-the-Art Facilities</h2>
                         <p>
                           Our campus is designed to provide the perfect learning environment:
                         </p>
@@ -186,7 +195,7 @@
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #fff9e6; border-left: 4px solid #ffb72b; margin-bottom: 25px; border-radius: 0 8px 8px 0;">
                     <tr>
                       <td style="padding: 18px;">
-                        <strong>College Timings Alert:</strong> 9:00 AM to 4:00 PM
+                        <strong>New College Timings Alert:</strong> 9:00 AM to 4:00 PM
                       </td>
                     </tr>
                   </table>
@@ -238,9 +247,9 @@
                     <tr>
                       <td style="text-align: left; padding-bottom: 15px;">
                         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <td width="25" valign="top" style="color: #ffb72b;"></td>
-                            <td width="25" valign="top" style="color: #ffb72b;"></td>
-                            <td style="text-align: center;"><strong>Location:</strong> Christ Nagar, Hullahalli, Begur-Koppa Road, Sakkalwara Post, Bengaluru 560 083</td>
+                          <tr>
+                            <td width="25" valign="top" style="color: #ffb72b;">📍</td>
+                            <td><strong>Location:</strong> Christ Nagar, Hullahalli, Begur-Koppa Road, Sakkalwara Post, Bengaluru 560 083</td>
                           </tr>
                         </table>
                       </td>
@@ -248,9 +257,9 @@
                     <tr>
                       <td style="text-align: left; padding-bottom: 15px;">
                         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <td width="25" valign="top" style="color: #ffb72b;"></td>
-                            <td width="25" valign="top" style="color: #ffb72b;"></td>
-                            <td style="text-align: center;"><strong>Email:</strong> admissions@caias.in</td>
+                          <tr>
+                            <td width="25" valign="top" style="color: #ffb72b;">✉️</td>
+                            <td><strong>Email:</strong> admissions@caias.in</td>
                           </tr>
                         </table>
                       </td>
@@ -258,8 +267,8 @@
                     <tr>
                       <td style="text-align: left; padding-bottom: 15px;">
                         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                          <tr style="text-align: center;">
-                            <td width="25" valign="top" style="color: #ffb72b;"></td>
+                          <tr>
+                            <td width="25" valign="top" style="color: #ffb72b;">📞</td>
                             <td><strong>Phone:</strong> +91 80 3521 5070, +91 80 3521 5110<br />+91 88844 21052, +91 88844 21053</td>
                           </tr>
                         </table>
@@ -314,3 +323,21 @@
     </div>
   </body>
 </html>
+
+`;
+
+    try{
+      GmailApp.sendEmail(email, subject, "", {
+      htmlBody: htmlBody,
+      attachments: [
+        DriveApp.getFileById("1HIBPQxOCnJ8cq_3RQRl-XdhlJ4Ia9uZL"), 
+        DriveApp.getFileById("1gPbpV55IHOHHa4l0c5h-B-QwWa3cVCZZ").getAs(MimeType.PDF)
+      ]
+   });
+ Logger.log("Email sent successfully to: " + email);
+    } catch (error) {
+      Logger.log("Failed to send email to: " + email + " - Error: " + error.message);
+    }
+  }
+}
+
