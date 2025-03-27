@@ -5,56 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CAIAS UG ADMISSIONS</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #d3c8c883;
+      * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        text-align: center;
+      }
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
       }
       .header-container {
         width: 100%;
-        height: 350px;
-        background: url("https://i.postimg.cc/76Z4H3y0/Header.png") no-repeat
-          center center/cover;
+        max-width: 1200px;
+        height: 300px;
+        background: url("https://i.postimg.cc/76Z4H3y0/Header.png") no-repeat center center/cover;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        
+        position: relative;
+        overflow: hidden;
+      }
+      .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .header-text {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 0 20px;
       }
       .grid-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto auto;
+        gap: 20px;
+        max-width: 1200px;
+        width: 100%;
       }
       .grid-item {
         position: relative;
-        width: 45%;
-        margin: 10px;
-        border-radius: 12px;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
-        aspect-ratio: 1.2;
+      }
+      .grid-row-2 {
+        grid-column: span 2;
+      }
+      .grid-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
       }
       .grid-item img {
         width: 100%;
-        height: 100%;
+        height: 350px;
         object-fit: cover;
+        transition: transform 0.3s ease;
       }
       .text-overlay {
         position: absolute;
         bottom: 0;
+        left: 0;
         width: 100%;
-        background: rgba(0, 0, 0, 0.6);
+        background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
         color: white;
-        padding: 12px;
-        font-size: 18px;
+        padding: 15px;
+        font-size: 1.2rem;
         font-weight: bold;
         text-align: center;
+      }
+      @media screen and (max-width: 768px) {
+        .grid-container {
+          grid-template-columns: 1fr;
+        }
+        .grid-row-2 {
+          grid-column: span 1;
+        }
+        .header-container {
+          height: 200px;
+        }
+        .header-text {
+          font-size: 2rem;
+        }
+        .grid-item img {
+          height: 250px;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="header-container"></div>
+    <div class="header-container">
+      <!-- <div class="header-overlay">
+        <div class="header-text">CAIAS Undergraduate Admissions</div>
+      </div> -->
+    </div>
     <div class="grid-container" id="departments"></div>
+
     <script>
       const departments = [
         {
@@ -87,8 +147,8 @@
       const container = document.getElementById("departments");
       container.innerHTML = departments
         .map(
-          (dept) => `
-            <div class="grid-item" onclick="window.open('${dept.form}', '_blank')">
+          (dept, index) => `
+            <div class="grid-item ${index === 4 ? 'grid-row-2' : ''}" onclick="window.open('${dept.form}', '_blank')">
                 <img src="${dept.image}" alt="${dept.name}">
                 <div class="text-overlay">${dept.name}</div>
             </div>
